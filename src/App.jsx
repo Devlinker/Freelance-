@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "./components/Header/index.jsx";
 import Home from "./Pages/home/index.jsx";
 import About from "./Pages/about/index.jsx";
+import Services from "./Pages/services/index.jsx";
 import Skills from "./Pages/skills/index.jsx";
 import Projects from "./Pages/projects/index.jsx";
 import Qualification from "./Pages/qualification/index.jsx";
@@ -71,6 +72,7 @@ export default function App() {
       <main className="main">
         <Home />
         <About />
+        <Services />
         <Skills />
         <Projects />
         <Qualification />

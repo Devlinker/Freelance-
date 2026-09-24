@@ -1,25 +1,176 @@
-/*==================== Qualifications ====================*/
+/*==================== Qualifications & Experience ====================*/
 
 .qualification__tabs {
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: var(--mb-3);
+  flex-wrap: wrap;
 }
 
-.qualification__button {
-  font-size: var(--h2-font-size);
+.qualification__tab-pill {
+  font-size: var(--small-font-size);
   font-weight: var(--font-semi-bold);
-  color: var(--first-color);
+  font-family: var(--body-font);
+  color: var(--text-color);
+  background: hsla(var(--hue-color), 29%, 16%, 0.45);
+  border: 1px solid hsla(var(--hue-color), 69%, 61%, 0.15);
   display: inline-flex;
   align-items: center;
   column-gap: 0.5rem;
-  padding: 0.5rem 1.5rem;
-  border-bottom: 2px solid var(--first-color);
-  cursor: default;
+  padding: 0.65rem 1.35rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  backdrop-filter: blur(8px);
 }
 
-.qualification__icon {
-  font-size: 1.8rem;
+.qualification__tab-pill:hover {
+  color: #fff;
+  border-color: var(--first-color);
+  background: hsla(var(--hue-color), 69%, 61%, 0.15);
+}
+
+.qualification__tab-pill.qualification__tab-active {
+  color: #fff;
+  background: var(--first-color);
+  border-color: var(--first-color);
+  box-shadow: 0 4px 15px hsla(var(--hue-color), 69%, 61%, 0.4);
+}
+
+/* Work Experience Card */
+.qualification__work-list {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.qualification__work-card {
+  background: hsla(var(--hue-color), 29%, 16%, 0.5);
+  border: 1px solid hsla(var(--hue-color), 69%, 61%, 0.2);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.qualification__work-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--first-color);
+  box-shadow: 0 16px 35px hsla(var(--hue-color), 69%, 61%, 0.25);
+}
+
+.qualification__work-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--first-color), transparent);
+}
+
+.qualification__work-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.qualification__work-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 0.15rem 0.6rem;
+  border-radius: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.qualification__work-title {
+  font-size: 1.35rem;
+  color: var(--title-color);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.qualification__work-company {
+  font-size: var(--normal-font-size);
+  color: var(--text-color);
+  display: block;
+}
+
+.qualification__work-date {
+  font-size: 0.813rem;
+  color: var(--first-color-lighter);
+  background: hsla(var(--hue-color), 69%, 61%, 0.12);
+  border: 1px solid hsla(var(--hue-color), 69%, 61%, 0.2);
+  padding: 0.35rem 0.85rem;
+  border-radius: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.qualification__work-desc {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.qualification__work-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.qualification__tag-pill {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--first-color-lighter);
+  background: hsla(var(--hue-color), 69%, 61%, 0.1);
+  border: 1px solid hsla(var(--hue-color), 69%, 61%, 0.2);
+  padding: 0.2rem 0.65rem;
+  border-radius: 0.4rem;
+}
+
+.qualification__bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.qualification__bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+.qualification__check {
+  color: var(--first-color);
+  font-size: 1rem;
+  margin-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+/* Education Timeline */
+.qualification__sections {
+  max-width: 760px;
+  margin: 0 auto;
 }
 
 .qualification__data {
@@ -29,29 +180,19 @@
 }
 
 .qualification__card {
-  background: hsla(var(--hue-color), 60%, 99%, 0.6);
-  border: 1px solid hsla(var(--hue-color), 69%, 61%, 0.15);
+  background: hsla(var(--hue-color), 29%, 16%, 0.5);
+  border: 1px solid hsla(var(--hue-color), 69%, 61%, 0.18);
   border-radius: 1rem;
   padding: 1.5rem;
   backdrop-filter: blur(8px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
   margin-bottom: var(--mb-2);
 }
 
-body.dark-theme .qualification__card {
-  background: hsla(var(--hue-color), 29%, 16%, 0.55);
-  border-color: hsla(var(--hue-color), 69%, 61%, 0.2);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
 .qualification__card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   border-color: var(--first-color);
-  box-shadow: 0 10px 20px hsla(var(--hue-color), 69%, 61%, 0.15);
-}
-
-body.dark-theme .qualification__card:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -104,8 +245,7 @@ body.dark-theme .qualification__card:hover {
   transform: translate(6px, -7px);
 }
 
-/*================= Services & Modals ==================*/
-
+/* Modals */
 .services__button {
   cursor: pointer;
   font-size: var(--small-font-size);
@@ -131,7 +271,7 @@ body.dark-theme .qualification__card:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(15, 10, 30, 0.45);
+  background-color: rgba(15, 10, 30, 0.65);
   backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
@@ -143,29 +283,22 @@ body.dark-theme .qualification__card:hover {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.active-modal {
+  opacity: 1;
+  visibility: visible;
+}
+
 .services__modal-content {
   position: relative;
-  background-color: var(--container-color);
+  background-color: var(--body-color);
+  border: 1px solid hsla(var(--hue-color), 69%, 61%, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
   padding: 2.25rem 1.75rem;
   border-radius: 1.25rem;
   width: 100%;
   max-width: 480px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-  border: 1px solid hsla(var(--hue-color), 69%, 61%, 0.15);
   transform: scale(0.9);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-body.dark-theme .services__modal-content {
-  background-color: var(--body-color);
-  border-color: hsla(var(--hue-color), 69%, 61%, 0.25);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
-}
-
-/* Active Modal */
-.active-modal {
-  opacity: 1;
-  visibility: visible;
 }
 
 .active-modal .services__modal-content {
@@ -186,9 +319,7 @@ body.dark-theme .services__modal-content {
   font-size: 1.5rem;
   color: var(--first-color);
   cursor: pointer;
-  transition:
-    color 0.3s ease,
-    transform 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .services__modal-close:hover {
@@ -206,33 +337,9 @@ body.dark-theme .services__modal-content {
   align-items: flex-start;
 }
 
-.services__modal-icon,
-.services__moda-icon {
+.services__modal-icon {
   color: var(--first-color);
   font-size: 1.1rem;
   margin-top: 0.15rem;
-}
-
-/* Qualification responsiveness media queries */
-@media screen and (min-width: 568px) {
-  .qualification__section {
-    display: grid;
-    grid-template-columns: 0.6fr;
-    justify-content: center;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .qualification__tabs {
-    justify-content: center;
-  }
-  .qualification__button {
-    margin: 0 var(--mb-1);
-  }
-  .qualification__sections {
-    grid-template-columns: 0.5fr;
-  }
-  .services__modal-content {
-    width: 500px;
-  }
+  flex-shrink: 0;
 }

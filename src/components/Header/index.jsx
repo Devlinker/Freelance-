@@ -7,10 +7,11 @@ export default function Header({ activeSection }) {
   const navItems = [
     { id: "home", icon: "uil-estate", label: "Home" },
     { id: "about", icon: "uil-user", label: "About" },
+    { id: "services", icon: "uil-briefcase", label: "Services" },
     { id: "skills", icon: "uil-file-alt", label: "Skills" },
     { id: "projects", icon: "uil-scenery", label: "Projects" },
-    { id: "qualification", icon: "uil-briefcase-alt", label: "Qualification" },
-    { id: "contact", icon: "uil-message", label: "Contact-Me" },
+    { id: "qualification", icon: "uil-briefcase-alt", label: "Experience" },
+    { id: "contact", icon: "uil-message", label: "Contact" },
   ];
 
   return (

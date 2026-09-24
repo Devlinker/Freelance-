@@ -14,7 +14,7 @@ export default function Contact() {
 
     try {
       const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE";
-      
+
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
@@ -36,13 +36,11 @@ export default function Contact() {
       if (data.success) {
         setStatus({
           type: "success",
-          message: "Thank you! Your message has been sent successfully.",
+          message: "Thank you! Your message has been sent successfully. I'll get back to you shortly.",
         });
         setName("");
         setEmail("");
         setMessage("");
-
-        // Status self-dismissal is managed by the Toast component
       } else {
         setStatus({
           type: "error",
@@ -60,20 +58,28 @@ export default function Contact() {
 
   return (
     <section className="contact section" id="contact">
-      <h2 className="section__title">Contact Me</h2>
-      <span className="section__subtitle">Get in touch</span>
+      <h2 className="section__title">Get in Touch</h2>
+      <span className="section__subtitle">
+        Have a website project or idea? Let's discuss it.
+      </span>
 
       <div className="contact__container container grid">
+        {/* Left Information List */}
         <div className="contact__info-list">
-          {/* Phone Card */}
+          {/* WhatsApp Card */}
           <div className="contact__card">
             <div className="contact__information">
-              <i className="uil uil-calling contact__icon"></i>
+              <i className="fa-brands fa-whatsapp contact__icon" style={{ color: "#25D366" }}></i>
               <div>
-                <h3 className="contact__title">Contact Me</h3>
+                <h3 className="contact__title">WhatsApp</h3>
                 <span className="contact__subtitle">
-                  <a href="tel:9944263098" className="contact__link">
-                    9944263098
+                  <a
+                    href="https://wa.me/919944263098?text=Hi%20Mathan,%20I'm%20interested%20in%20discussing%20a%20website%20project!"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="contact__link"
+                  >
+                    +91 9944263098 (Chat Now)
                   </a>
                 </span>
               </div>
@@ -89,6 +95,21 @@ export default function Contact() {
                 <span className="contact__subtitle">
                   <a href="mailto:mathansaran8@gmail.com" className="contact__link">
                     mathansaran8@gmail.com
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Phone Card */}
+          <div className="contact__card">
+            <div className="contact__information">
+              <i className="uil uil-calling contact__icon"></i>
+              <div>
+                <h3 className="contact__title">Call Me</h3>
+                <span className="contact__subtitle">
+                  <a href="tel:9944263098" className="contact__link">
+                    +91 9944263098
                   </a>
                 </span>
               </div>
@@ -114,34 +135,56 @@ export default function Contact() {
               </div>
             </div>
           </div>
+
+          {/* Direct Social Links */}
+          <div className="contact__direct-socials">
+            <a
+              href="https://www.linkedin.com/in/devlinker/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact__social-chip"
+            >
+              <i className="fa-brands fa-linkedin-in"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a
+              href="https://github.com/Devlinker"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact__social-chip"
+            >
+              <i className="fa-brands fa-github"></i>
+              <span>GitHub</span>
+            </a>
+          </div>
         </div>
 
         {/* Contact Form */}
         <form onSubmit={handleSubmit} className="contact__form grid">
-          <div className="contact__inputs grid">
-            <div className="contact__content">
-              <label htmlFor="name" className="contact__label">Name</label>
-              <input
-                type="text"
-                id="name"
-                className="contact__input"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-            </div>
+          <div className="contact__content">
+            <label htmlFor="name" className="contact__label">Name</label>
+            <input
+              type="text"
+              id="name"
+              className="contact__input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Your name"
+              required
+            />
+          </div>
 
-            <div className="contact__content">
-              <label htmlFor="email" className="contact__label">Email</label>
-              <input
-                type="email"
-                id="email"
-                className="contact__input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
+          <div className="contact__content">
+            <label htmlFor="email" className="contact__label">Email</label>
+            <input
+              type="email"
+              id="email"
+              className="contact__input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Your email address"
+              required
+            />
           </div>
 
           <div className="contact__content">
@@ -149,19 +192,25 @@ export default function Contact() {
             <textarea
               id="message"
               cols="0"
-              rows="2"
+              rows="5"
               className="contact__input"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              placeholder="Tell me about your project, goals, or role..."
               required
             ></textarea>
           </div>
 
           <div>
-            <button 
-              type="submit" 
-              className="button button--flex" 
-              style={{ border: "none", cursor: status.type === "submitting" ? "not-allowed" : "pointer" }}
+            <button
+              type="submit"
+              className="button button--flex"
+              style={{
+                border: "none",
+                cursor: status.type === "submitting" ? "not-allowed" : "pointer",
+                width: "100%",
+                justifyContent: "center",
+              }}
               disabled={status.type === "submitting"}
             >
               {status.type === "submitting" ? "Sending..." : "Send Message"}
@@ -171,10 +220,10 @@ export default function Contact() {
         </form>
       </div>
 
-      <Toast 
-        message={status.message} 
-        type={status.type} 
-        onClose={() => setStatus({ type: "", message: "" })} 
+      <Toast
+        message={status.message}
+        type={status.type}
+        onClose={() => setStatus({ type: "", message: "" })}
       />
     </section>
   );

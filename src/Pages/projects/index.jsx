@@ -1,12 +1,11 @@
-import { useState, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ExternalLink,
   Eye,
   X,
   CheckCircle2,
   ArrowRight,
-  ArrowDown,
 } from "lucide-react";
 import "./project.css";
 
@@ -27,7 +26,6 @@ const GithubIcon = ({ size = 18 }) => (
   </svg>
 );
 
-// Pure Front End & UI Developer project list
 const projectsData = [
   {
     id: "01",
@@ -35,17 +33,21 @@ const projectsData = [
     category: "UI Design System",
     status: "Live Component Kit",
     description:
-      "Production-ready Frontend component library with 50+ accessible components and Framer Motion micro-interactions.",
+      "Production-ready Frontend component library with 50+ accessible components, HSL design tokens, and smooth micro-interactions.",
     fullDescription:
       "A comprehensive dark-mode UI design system built with React, Tailwind CSS, and Framer Motion. Engineered with 50+ accessible components, HSL design tokens, theme switching, and Storybook documentation.",
+    problemSolved:
+      "Inconsistent UI patterns and redundant CSS across multiple projects slowing down feature delivery and creating design discrepancies.",
+    myContribution:
+      "Architected 50+ reusable accessible React components, structured custom HSL token system, and built interactive documentation.",
     features: [
       "50+ Accessible React & Tailwind UI components",
       "Custom HSL CSS design tokens & theme switcher",
       "Framer Motion micro-interactions & tab sliders",
       "Responsive grid, modals, and drawer components",
     ],
-    tags: ["React", "Tailwind CSS", "Framer Motion", "TypeScript"],
-    metric: "⭐ 1.5k Stars",
+    tags: ["React", "Tailwind CSS", "Framer Motion", "JavaScript"],
+    metric: "50+ UI Components",
     image: "/assets/img/projects/dashboard.webp",
     liveUrl: "https://example.com/demo-aether-ui",
     githubUrl: "https://github.com/Devlinker/aether-ui-library",
@@ -56,9 +58,13 @@ const projectsData = [
     category: "Web Applications",
     status: "Production Live",
     description:
-      "Sleek frontend dashboard interface featuring responsive grid cards, dark glassmorphism, and Recharts analytics.",
+      "Sleek frontend dashboard interface featuring responsive grid cards, dark glassmorphism, and Recharts analytics visualizers.",
     fullDescription:
       "Built a modern frontend web application interface featuring fluid responsive grid cards, glassmorphic dark-theme UI, interactive Recharts analytics, slide-over detail panels, and custom scroll triggers.",
+    problemSolved:
+      "Complex analytical metrics were cluttered and difficult to navigate on smaller laptops and mobile screens.",
+    myContribution:
+      "Engineered a responsive CSS grid layout, dark glassmorphism styling, and lightweight Recharts interactive charts.",
     features: [
       "Responsive CSS Grid & Flexbox layout",
       "Interactive analytics chart visualizers",
@@ -66,7 +72,7 @@ const projectsData = [
       "Cross-browser pixel-perfect responsiveness",
     ],
     tags: ["React", "CSS3 / SCSS", "Recharts", "Vite"],
-    metric: "⚡ 99/100 Lighthouse",
+    metric: "Responsive Analytics",
     image: "/assets/img/projects/ecommerce.webp",
     liveUrl: "https://example.com/demo-luxnova-dashboard",
     githubUrl: "https://github.com/Devlinker/luxnova-dashboard-ui",
@@ -74,20 +80,24 @@ const projectsData = [
   {
     id: "03",
     title: "CyberPulse 3D Landing Page",
-    category: "CSS & 3D WebGL",
+    category: "CSS & Web UI",
     status: "Featured UI",
     description:
-      "High-impact landing page with WebGL particle canvas background, Lenis smooth scroll, and 3D card tilt.",
+      "High-impact landing page with particle canvas background, smooth scrolling, and 3D card tilt interactions.",
     fullDescription:
-      "Engineered an animated frontend landing page showcasing dynamic Three.js canvas particle effects, Lenis smooth scrolling, 3D card hover tilt, and sleek neon gradient typography.",
+      "Engineered an animated frontend landing page showcasing dynamic canvas particle effects, smooth scrolling, 3D card hover tilt, and sleek neon gradient typography.",
+    problemSolved:
+      "Static promotional landing pages lacked visual engagement, resulting in high bounce rates and low lead conversion.",
+    myContribution:
+      "Developed high-performance 60fps micro-animations, interactive particle background, and responsive mobile drawer.",
     features: [
-      "Interactive Three.js particle canvas background",
-      "Smooth Lenis scroll & parallax transitions",
+      "Interactive particle canvas background",
+      "Smooth scroll & parallax transitions",
       "3D perspective card hover tilt interactions",
       "Fully responsive mobile navigation drawer",
     ],
-    tags: ["JavaScript", "Three.js", "Framer Motion", "CSS3"],
-    metric: "🔥 60fps Animation",
+    tags: ["JavaScript", "React", "Framer Motion", "CSS3"],
+    metric: "Smooth 60fps Motion",
     image: "/assets/img/projects/ai_saas.webp",
     liveUrl: "https://example.com/demo-cyberpulse",
     githubUrl: "https://github.com/Devlinker/cyberpulse-animated-ui",
@@ -101,6 +111,10 @@ const projectsData = [
       "Modern fashion shop user interface featuring animated product modal previews, filter bar, and cart drawer.",
     fullDescription:
       "Designed and built an intuitive frontend user experience for an online fashion shop. Features slide-over cart drawers, instant live search filtering, responsive product grids, and animated tab bars.",
+    problemSolved:
+      "Clunky navigation and slow client-side filtering caused user friction during product catalog browsing.",
+    myContribution:
+      "Implemented slide-over cart drawer, instant multi-attribute filter drawer, and mobile-first responsive layout.",
     features: [
       "Slide-over cart drawer & filter drawer UI",
       "Instant live search & category tab filtering",
@@ -108,7 +122,7 @@ const projectsData = [
       "Pixel-perfect mobile-first web interface",
     ],
     tags: ["React", "Next.js", "Tailwind CSS", "Framer Motion"],
-    metric: "📱 100% Mobile First",
+    metric: "Mobile-First Design",
     image: "/assets/img/projects/dashboard.webp",
     liveUrl: "https://example.com/demo-lumina-shop",
     githubUrl: "https://github.com/Devlinker/lumina-ecommerce-ui",
@@ -116,138 +130,115 @@ const projectsData = [
 ];
 
 export default function Projects() {
-  const containerRef = useRef(null);
   const [selectedProject, setSelectedProject] = useState(null);
 
-  // Framer Motion Scroll-Driven Horizontal Translation
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  // Smooth horizontal slide across the cards
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-54%"]);
-
   return (
-    <div ref={containerRef} className="projects__scroll-container" id="projects">
-      {/* Sticky Full-Screen Viewport */}
-      <div className="projects__sticky-wrapper">
-        {/* Top Scroll Progress Bar */}
-        <div className="projects__progress-track">
-          <motion.div
-            className="projects__progress-bar"
-            style={{ scaleX: scrollYProgress }}
-          />
-        </div>
+    <section className="projects section" id="projects">
+      {/* Ambient glowing blobs */}
+      <div className="projects__glow projects__glow-1"></div>
+      <div className="projects__glow projects__glow-2"></div>
 
-        {/* Ambient glowing blobs */}
-        <div className="projects__glow projects__glow-1"></div>
-        <div className="projects__glow projects__glow-2"></div>
-
-        {/* Sticky Section Header (max-width: 1000px) */}
-        <div className="projects__sticky-header">
-          <div className="projects__scroll-badge">
+      <div className="projects__container container">
+        {/* Section Header */}
+        <div className="projects__header">
+          <div className="projects__badge">
             <span className="projects__pulse-dot"></span>
-            <span>Scroll Down to Slide Projects</span>
-            <ArrowDown size={13} />
+            <span>Featured Web Projects</span>
           </div>
-          <h2 className="section__title">Front End Projects Showcase</h2>
+          <h2 className="section__title">Frontend & Web Projects</h2>
           <span className="section__subtitle">
-            Explore my interactive UI design systems, web dashboards, and frontend animations
+            Modern web applications, responsive landing pages, and UI systems
           </span>
         </div>
 
-        {/* Max-Width 1000px Viewport Frame */}
-        <div className="projects__viewport-1000">
-          {/* Scroll-Driven Moving Cards Track */}
-          <motion.div style={{ x }} className="projects__motion-track">
-            {projectsData.map((project) => (
-              <div key={project.id} className="sticky__card">
-                {/* Card Window Mockup Header - 175px */}
-                <div className="sticky__img-box">
-                  <div className="sticky__window-bar">
-                    <div className="sticky__window-dots">
-                      <span className="sticky__dot sticky__dot-red"></span>
-                      <span className="sticky__dot sticky__dot-yellow"></span>
-                      <span className="sticky__dot sticky__dot-green"></span>
-                    </div>
-                    <span className="sticky__category-tag">{project.category}</span>
+        {/* Responsive Grid of Project Cards */}
+        <div className="projects__grid">
+          {projectsData.map((project) => (
+            <div key={project.id} className="project__card">
+              {/* Card Window Mockup Header */}
+              <div className="project__img-box">
+                <div className="project__window-bar">
+                  <div className="project__window-dots">
+                    <span className="project__dot project__dot-red"></span>
+                    <span className="project__dot project__dot-yellow"></span>
+                    <span className="project__dot project__dot-green"></span>
                   </div>
-
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="sticky__img"
-                    loading="lazy"
-                    decoding="async"
-                  />
-
-                  <div className="sticky__overlay">
-                    <button
-                      className="sticky__action-btn"
-                      onClick={() => setSelectedProject(project)}
-                      title="Quick View Details"
-                    >
-                      <Eye size={17} />
-                    </button>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="sticky__action-btn"
-                      title="GitHub Repository"
-                    >
-                      <GithubIcon size={17} />
-                    </a>
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="sticky__action-btn"
-                      title="Live Demo"
-                    >
-                      <ExternalLink size={17} />
-                    </a>
-                  </div>
+                  <span className="project__category-tag">{project.category}</span>
                 </div>
 
-                {/* Card Content Body - 225px */}
-                <div className="sticky__body">
-                  <div>
-                    <div className="sticky__status-row">
-                      <span className="sticky__status-badge">
-                        <span className="status__dot"></span>
-                        {project.status}
-                      </span>
-                      <span className="sticky__metric">{project.metric}</span>
-                    </div>
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="project__img"
+                  loading="lazy"
+                  decoding="async"
+                />
 
-                    <h3 className="sticky__title">{project.title}</h3>
-                    <p className="sticky__desc">{project.description}</p>
+                <div className="project__overlay">
+                  <button
+                    className="project__action-btn"
+                    onClick={() => setSelectedProject(project)}
+                    title="Quick View Details"
+                  >
+                    <Eye size={17} />
+                  </button>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="project__action-btn"
+                    title="GitHub Repository"
+                  >
+                    <GithubIcon size={17} />
+                  </a>
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="project__action-btn"
+                    title="Live Demo"
+                  >
+                    <ExternalLink size={17} />
+                  </a>
+                </div>
+              </div>
+
+              {/* Card Body */}
+              <div className="project__body">
+                <div>
+                  <div className="project__status-row">
+                    <span className="project__status-badge">
+                      <span className="status__dot"></span>
+                      {project.status}
+                    </span>
+                    <span className="project__metric">{project.metric}</span>
                   </div>
 
-                  <div>
-                    <div className="sticky__tags">
-                      {project.tags.map((tag, idx) => (
-                        <span key={idx} className="sticky__tag">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                  <h3 className="project__title">{project.title}</h3>
+                  <p className="project__desc">{project.description}</p>
+                </div>
 
-                    <div className="sticky__footer">
-                      <span
-                        className="sticky__details-link"
-                        onClick={() => setSelectedProject(project)}
-                      >
-                        Details & Preview <ArrowRight size={13} />
+                <div>
+                  <div className="project__tags">
+                    {project.tags.map((tag, idx) => (
+                      <span key={idx} className="project__tag">
+                        {tag}
                       </span>
-                    </div>
+                    ))}
+                  </div>
+
+                  <div className="project__footer">
+                    <span
+                      className="project__details-link"
+                      onClick={() => setSelectedProject(project)}
+                    >
+                      Details & Preview <ArrowRight size={13} />
+                    </span>
                   </div>
                 </div>
               </div>
-            ))}
-          </motion.div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -263,9 +254,9 @@ export default function Projects() {
           >
             <motion.div
               className="modal__glass-box"
-              initial={{ scale: 0.88, opacity: 0, y: 35 }}
+              initial={{ scale: 0.9, opacity: 0, y: 25 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.88, opacity: 0, y: 35 }}
+              exit={{ scale: 0.9, opacity: 0, y: 25 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
             >
@@ -291,7 +282,7 @@ export default function Projects() {
 
               <div className="modal__tags">
                 {selectedProject.tags.map((tag, idx) => (
-                  <span key={idx} className="sticky__tag">
+                  <span key={idx} className="project__tag">
                     {tag}
                   </span>
                 ))}
@@ -301,11 +292,65 @@ export default function Projects() {
                 {selectedProject.fullDescription || selectedProject.description}
               </p>
 
+              {selectedProject.problemSolved && (
+                <div style={{ marginBottom: "1.25rem" }}>
+                  <h4
+                    style={{
+                      fontSize: "1.05rem",
+                      marginBottom: "0.4rem",
+                      color: "var(--title-color)",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                    }}
+                  >
+                    <i className="uil uil-lightbulb-alt" style={{ color: "#eab308" }}></i>
+                    Problem Solved
+                  </h4>
+                  <p
+                    style={{
+                      fontSize: "0.875rem",
+                      color: "var(--text-color)",
+                      lineHeight: "1.6",
+                    }}
+                  >
+                    {selectedProject.problemSolved}
+                  </p>
+                </div>
+              )}
+
+              {selectedProject.myContribution && (
+                <div style={{ marginBottom: "1.5rem" }}>
+                  <h4
+                    style={{
+                      fontSize: "1.05rem",
+                      marginBottom: "0.4rem",
+                      color: "var(--title-color)",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                    }}
+                  >
+                    <i className="uil uil-user-check" style={{ color: "var(--first-color)" }}></i>
+                    My Contribution
+                  </h4>
+                  <p
+                    style={{
+                      fontSize: "0.875rem",
+                      color: "var(--text-color)",
+                      lineHeight: "1.6",
+                    }}
+                  >
+                    {selectedProject.myContribution}
+                  </p>
+                </div>
+              )}
+
               {selectedProject.features && (
                 <>
                   <h4
                     style={{
-                      fontSize: "1.1rem",
+                      fontSize: "1.05rem",
                       marginBottom: "0.85rem",
                       color: "var(--title-color)",
                     }}
@@ -339,7 +384,7 @@ export default function Projects() {
                   href={selectedProject.githubUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="button button--flex button--white"
+                  className="button button--flex button--ghost"
                 >
                   Source Code <GithubIcon size={16} style={{ marginLeft: "0.5rem" }} />
                 </a>
@@ -348,6 +393,6 @@ export default function Projects() {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </section>
   );
 }

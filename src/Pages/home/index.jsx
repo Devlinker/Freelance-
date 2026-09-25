@@ -1,105 +1,77 @@
-import TrueFocus from "../../components/TrueFocus/TrueFocus.jsx";
+import { ArrowRight, Code2, Sparkles, Layers, Zap } from "lucide-react";
 import "./home.css";
 
 export default function Home() {
+  const stats = [
+    { value: "2+", label: "Years Experience" },
+    { value: "10+", label: "Projects Completed" },
+    { value: "100%", label: "Client Satisfaction" },
+  ];
+
   return (
     <section className="home section" id="home">
-      {/* Ambient Background Glow Blobs */}
+      {/* Ambient background glows */}
       <div className="home__glow home__glow-1"></div>
       <div className="home__glow home__glow-2"></div>
 
-      <div className="home__container container grid">
-        <div className="home__content grid">
-          <div className="home__social">
-            <a
-              href="https://www.linkedin.com/in/devlinker/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="home__social-icon"
-              title="LinkedIn"
-            >
-              <i className="uil uil-linkedin-alt home__icon"></i>
-            </a>
-
-            <a
-              href="https://github.com/Devlinker"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="home__social-icon"
-              title="GitHub"
-            >
-              <i className="uil uil-github-alt home__icon"></i>
-            </a>
-          </div>
-
-          <div className="home__img">
-            <svg
-              className="home__blob"
-              viewBox="0 0 200 187"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-            >
-              <mask id="mask0" masktype="alpha">
-                <path
-                  d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
-                    130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
-                    97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
-                    0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"
-                />
-              </mask>
-              <g mask="url(#mask0)">
-                <path
-                  d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 
-                    165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
-                    129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
-                    -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"
-                />
-                <image
-                  className="home__blob-img"
-                  x="-35"
-                  y="-10"
-                  width="180"
-                  height="210"
-                  href="/assets/img/man5.webp"
-                  xlinkHref="/assets/img/man5.webp"
-                />
-              </g>
-            </svg>
-          </div>
-
+      <div className="home__container container">
+        <div className="home__grid">
+          {/* Left Hero Content */}
           <div className="home__data">
+            {/* Pill Tag */}
+            <div className="home__badge">
+              <span className="home__badge-dot animate-pulse"></span>
+              <span>Freelance Web Developer</span>
+            </div>
+
+            {/* Headline */}
             <h1 className="home__title">
-              <TrueFocus
-                sentence="Hey, I'm Mathan"
-                manualMode={false}
-                blurAmount={5}
-                borderColor="var(--first-color)"
-                glowColor="hsla(var(--hue-color), 69%, 61%, 0.45)"
-                animationDuration={0.5}
-                pauseBetweenAnimations={1}
-              />
+              Freelance Web Developer <br />
+              <span className="home__title-highlight">in Coimbatore</span>
             </h1>
-            <h2 className="home__subtitle">Frontend Developer & Freelance Web Developer</h2>
+
+            {/* Subtitle */}
             <p className="home__description">
-              I build fast, responsive, and modern websites for businesses, startups, and personal brands — turning design concepts into high-converting accessible web applications.
+              I'm Mathan, a freelance website developer in Coimbatore, creating fast, responsive and modern websites for businesses, startups and individuals.
             </p>
-            <div className="home__buttons">
-              <a href="#contact" className="button button--flex">
-                Contact Me<i className="uil uil-message button__icon"></i>
+
+            {/* CTAs */}
+            <div className="home__actions">
+              <a href="#contact" className="button">
+                Start Your Project <ArrowRight size={18} />
               </a>
-              <a href="#projects" className="button button--flex button--ghost">
-                View My Work<i className="uil uil-scenery button__icon"></i>
+              <a href="#projects" className="button button--ghost">
+                View My Work
               </a>
             </div>
-          </div>
-        </div>
 
-        <div className="home__scroll">
-          <a href="#about" className="home__scroll-button button--flex">
-            <i className="uil uil-mouse-alt home__scroll-mouse"></i>
-            <span className="home__scroll-name">Scroll down</span>
-            <i className="uil uil-arrow-down home__scroll-arrow"></i>
-          </a>
+            {/* Stats Metrics */}
+            <div className="home__stats">
+              {stats.map((stat, index) => (
+                <div key={index} className="home__stat-item">
+                  <div className="home__stat-value">{stat.value}</div>
+                  <div className="home__stat-label">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Hero Visual Showcase */}
+          <div className="home__visual">
+            <div className="home__img-wrapper">
+              {/* Developer Photo in Glowing Glass Frame */}
+              <div className="home__img-frame">
+                <img
+                  src="/assets/img/hero-developer.jpg"
+                  alt="Mathan - Freelance Web Developer in Coimbatore"
+                  className="home__img"
+                  loading="eager"
+                  fetchPriority="high"
+                />
+                <div className="home__img-glow"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

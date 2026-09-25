@@ -1,25 +1,32 @@
 .scrollup {
   position: fixed;
-  right: 1rem;
+  right: 1.5rem;
   bottom: -20%;
-  background-color: var(--first-color);
-  opacity: 0.8;
-  padding: 0 0.3rem;
-  border-radius: 0.4rem;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-gradient);
+  border: 1px solid rgba(255, 122, 0, 0.35);
+  box-shadow: 0 4px 18px rgba(255, 122, 0, 0.35);
+  border-radius: 50%;
   z-index: var(--z-tooltip);
-  transition: 0.4s;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #ffffff;
 }
 
 .scrollup:hover {
-  background-color: var(--first-color-alt);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 122, 0, 0.5);
 }
 
 .scrollup__icon {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: #fff;
 }
 
 /* Show Scroll */
 .show-scroll {
-  bottom: 5rem;
+  bottom: 2.5rem;
 }

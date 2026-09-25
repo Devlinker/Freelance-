@@ -1,0 +1,128 @@
+.why-choose {
+  position: relative;
+  overflow: hidden;
+}
+
+.why-choose__header {
+  margin-bottom: 3.5rem;
+}
+
+.why-choose__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* Features List */
+.why-choose__features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.25rem 2rem;
+}
+
+.why-choose__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
+}
+
+.why-choose__icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 122, 0, 0.1);
+  border: 1px solid rgba(255, 122, 0, 0.25);
+  color: #ff7a00;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.why-choose__item:hover .why-choose__icon-box {
+  background: rgba(255, 122, 0, 0.2);
+  transform: scale(1.06);
+  box-shadow: 0 0 16px rgba(255, 122, 0, 0.3);
+}
+
+.why-choose__item-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 0.35rem;
+}
+
+.why-choose__item-desc {
+  font-size: 0.88rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+/* Right Visual */
+.why-choose__visual {
+  position: relative;
+}
+
+.why-choose__mockup-wrapper {
+  position: relative;
+  border-radius: 20px;
+}
+
+.why-choose__glow {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 122, 0, 0.2) 0%,
+    rgba(255, 122, 0, 0) 70%
+  );
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.why-choose__badge {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 5;
+  background: rgba(13, 20, 36, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  padding: 0.4rem 0.95rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.why-choose__img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+  background: #0d1424;
+}
+
+/* Responsive */
+@media screen and (max-width: 968px) {
+  .why-choose__grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  .why-choose__features {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}

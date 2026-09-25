@@ -3,9 +3,12 @@ import Header from "./components/Header/index.jsx";
 import Home from "./Pages/home/index.jsx";
 import About from "./Pages/about/index.jsx";
 import Services from "./Pages/services/index.jsx";
+import WhyChoose from "./Pages/whyChoose/index.jsx";
 import Skills from "./Pages/skills/index.jsx";
 import Projects from "./Pages/projects/index.jsx";
-import Qualification from "./Pages/qualification/index.jsx";
+import Process from "./Pages/process/index.jsx";
+import LocalSeo from "./Pages/localSeo/index.jsx";
+import Faq from "./Pages/faq/index.jsx";
 import Contact from "./Pages/contact/index.jsx";
 import Footer from "./components/Footer/index.jsx";
 import ScrollUp from "./components/ScrollUp/index.jsx";
@@ -17,26 +20,14 @@ export default function App() {
   useEffect(() => {
     document.body.classList.add("dark-theme");
 
-    // 1. Scroll Header Background Shadow
-    const handleHeaderScroll = () => {
-      const header = document.getElementById("header");
-      if (header) {
-        if (window.scrollY >= 80) {
-          header.classList.add("scroll-header");
-        } else {
-          header.classList.remove("scroll-header");
-        }
-      }
-    };
-
-    // 2. Track Active Navigation Link
+    // Track Active Navigation Link
     const handleActiveLinkScroll = () => {
       const sections = document.querySelectorAll("section[id]");
       const scrollY = window.pageYOffset;
 
       sections.forEach((current) => {
         const sectionHeight = current.offsetHeight;
-        const sectionTop = current.offsetTop - 50;
+        const sectionTop = current.offsetTop - 100;
         const sectionId = current.getAttribute("id");
 
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
@@ -49,7 +40,6 @@ export default function App() {
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          handleHeaderScroll();
           handleActiveLinkScroll();
           ticking = false;
         });
@@ -58,8 +48,6 @@ export default function App() {
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    // Initial run to capture correct states on load
-    handleHeaderScroll();
     handleActiveLinkScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
@@ -67,15 +55,18 @@ export default function App() {
 
   return (
     <>
-      <SplashCursor RAINBOW_MODE={false} COLOR="#6c5ce7" />
+      <SplashCursor RAINBOW_MODE={false} COLOR="#ff7a00" />
       <Header activeSection={activeSection} />
       <main className="main">
         <Home />
         <About />
         <Services />
+        <WhyChoose />
         <Skills />
         <Projects />
-        <Qualification />
+        <Process />
+        <LocalSeo />
+        <Faq />
         <Contact />
       </main>
       <Footer />

@@ -1,81 +1,93 @@
+import { FileText, CheckCircle2, Atom, Layers } from "lucide-react";
 import "./about.css";
 
 export default function About() {
+  const skills = [
+    "React.js",
+    "Next.js",
+    "Laravel",
+    "JavaScript",
+    "Responsive Web Design",
+    "SEO-friendly development",
+  ];
+
   return (
     <section className="about section" id="about">
-      <h2 className="section__title">About Me</h2>
-      <span className="section__subtitle">My introduction</span>
+      <div className="about__container container">
+        <div className="about__grid">
+          {/* Left Column: Code / Editor Visual Mockup */}
+          <div className="about__visual">
+            <div className="about__mockup-wrapper">
+              <img
+                src="/assets/img/code-mockup.jpg"
+                alt="Code editor mockup"
+                className="about__mockup-img"
+                loading="lazy"
+              />
 
-      <div className="about__bento container">
-        {/* Main Bio Card */}
-        <div className="about__bento-card about__bento-bio">
-          <div className="about__status">
-            <span className="about__status-dot animate-pulse"></span>
-            <span className="about__status-text">AVAILABLE FOR FREELANCE & FULL-TIME</span>
-          </div>
-          <h3 className="about__bento-title">Who I Am</h3>
-          <p className="about__description">
-            I’m a Frontend Developer and Freelance Web Developer based in Coimbatore, specializing in building high-performance, responsive websites and interactive web applications with <strong>React.js & Next.js</strong>. Having worked with businesses, startups, and product teams to craft conversion-focused landing pages, maintainable frontend architectures, and pixel-perfect user experiences.
-          </p>
-          <div className="about__buttons">
-            <a
-              download=""
-              href="/assets/Mathan-resume.pdf"
-              className="button button--flex"
-            >
-              Download CV<i className="fas fa-download button__icon"></i>
-            </a>
-          </div>
-        </div>
+              {/* Floating React Atom Badge */}
+              <div className="about__floating-badge about__badge--react animate-float">
+                <Atom size={24} color="#38bdf8" />
+              </div>
 
-        {/* Experience Card */}
-        <div className="about__bento-card about__bento-exp">
-          <div className="about__bento-icon">
-            <i className="fa-solid fa-briefcase"></i>
-          </div>
-          <div className="about__bento-value">1+</div>
-          <div className="about__bento-label">Years Experience</div>
-          <div className="about__bento-footer">Production & Freelance Apps</div>
-        </div>
+              {/* Floating Next.js Badge */}
+              <div
+                className="about__floating-badge about__badge--next animate-float"
+                style={{ animationDelay: "1.2s" }}
+              >
+                <Layers size={22} color="#ffffff" />
+              </div>
 
-        {/* Projects Card */}
-        <div className="about__bento-card about__bento-projects">
-          <div className="about__bento-icon">
-            <i className="fa-solid fa-folder-open"></i>
+              {/* Bottom Clean Code Status Card */}
+              <div className="about__status-card">
+                <div className="about__status-line">
+                  <CheckCircle2 size={15} color="#38bdf8" />
+                  <span>Clean Code</span>
+                </div>
+                <div className="about__status-line">
+                  <CheckCircle2 size={15} color="#ff7a00" />
+                  <span>Better Web</span>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="about__bento-value">09+</div>
-          <div className="about__bento-label">Projects Completed</div>
-          <div className="about__bento-footer">Web Apps & Landing Pages</div>
-        </div>
 
-        {/* Education Card */}
-        <div className="about__bento-card about__bento-edu">
-          <div className="about__bento-icon">
-            <i className="fa-solid fa-graduation-cap"></i>
-          </div>
-          <div className="about__bento-value">8.50</div>
-          <div className="about__bento-label">Aggregate CGPA</div>
-          <div className="about__bento-footer">B.Sc Information Technology</div>
-        </div>
+          {/* Right Column: Bio & Skills */}
+          <div className="about__content">
+            <span className="section__tag">About Me</span>
 
-        {/* Location Card */}
-        <div className="about__bento-card about__bento-location">
-          <div className="about__bento-icon">
-            <i className="fa-solid fa-location-dot"></i>
-          </div>
-          <div className="about__bento-value">Coimbatore</div>
-          <div className="about__bento-label">Tamil Nadu, India</div>
-          <div className="about__bento-footer">Available Worldwide</div>
-        </div>
+            <h2 className="section__title">
+              Freelance Website Developer <br />
+              <span className="highlight">in Coimbatore</span>
+            </h2>
 
-        {/* Focus Card */}
-        <div className="about__bento-card about__bento-focus">
-          <div className="about__bento-icon">
-            <i className="fa-solid fa-code"></i>
+            <p className="about__description">
+              I'm a frontend developer specializing in modern, responsive and user-friendly websites. I help businesses and individuals build professional websites that work smoothly across mobile, tablet and desktop devices.
+            </p>
+
+            {/* Skill Tags */}
+            <div className="about__skills">
+              {skills.map((skill, index) => (
+                <span key={index} className="about__skill-tag">
+                  {skill}
+                </span>
+              ))}
+            </div>
+
+            {/* Actions */}
+            <div className="about__actions">
+              <a
+                href="/assets/Mathan-resume.pdf"
+                download="Mathan-Resume.pdf"
+                className="button button--ghost"
+              >
+                Download CV <FileText size={16} />
+              </a>
+              <a href="#contact" className="button">
+                Start a Project
+              </a>
+            </div>
           </div>
-          <div className="about__bento-value">React / Next</div>
-          <div className="about__bento-label">Core Tech Stack</div>
-          <div className="about__bento-footer">Modern CSS & JavaScript</div>
         </div>
       </div>
     </section>

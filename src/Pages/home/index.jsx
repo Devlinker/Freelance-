@@ -62,7 +62,7 @@ export default function Home() {
               {/* Developer Photo in Glowing Glass Frame */}
               <div className="home__img-frame">
                 <img
-                  src="/assets/img/hero-developer.jpg"
+                  src="/assets/img/projects/Mathan.png"
                   alt="Mathan - Freelance Web Developer in Coimbatore"
                   className="home__img"
                   loading="eager"

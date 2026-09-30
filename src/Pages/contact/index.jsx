@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowRight, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import Toast from "../../components/Toast/index.jsx";
 import "./contact.css";
+
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "76f37804-8675-4866-99ca-7d873cfcc2be";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -24,33 +26,28 @@ export default function Contact() {
     setStatus({ type: "submitting", message: "Sending your inquiry..." });
 
     try {
-      const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE";
+      const formElement = e.target;
+      const data = new FormData(formElement);
+
+      // Append Web3Forms access key and metadata
+      data.set("access_key", WEB3FORMS_KEY);
+      data.set(
+        "subject",
+        `New Website Inquiry from ${formData.name || "Client"} (${formData.projectType || "General"})`
+      );
+      data.set("from_name", formData.name || "Client Lead");
 
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: accessKey,
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          project_type: formData.projectType,
-          budget: formData.budget,
-          message: formData.message,
-          subject: `New Freelance Inquiry from ${formData.name} - ${formData.projectType || "Website"}`,
-          from_name: "Freelance Portfolio Lead",
-        }),
+        body: data,
       });
 
-      const data = await response.json();
+      const res = await response.json();
 
-      if (data.success) {
+      if (res.success) {
         setStatus({
           type: "success",
-          message: "Thank you! Your inquiry has been sent. I will get back to you within 24 hours.",
+          message: "Thank you! Your message has been sent successfully. I will get back to you within 24 hours.",
         });
         setFormData({
           name: "",
@@ -61,10 +58,9 @@ export default function Contact() {
           message: "",
         });
       } else {
-        // Fallback gracefully if key is default
         setStatus({
-          type: "success",
-          message: "Inquiry received! I will review your project details and get back to you shortly.",
+          type: "error",
+          message: res.message || "Failed to send inquiry. Please try again or reach out on WhatsApp.",
         });
       }
     } catch {
@@ -232,16 +228,46 @@ export default function Contact() {
                 ></textarea>
               </div>
 
+              {/* Botcheck honeypot for spam protection */}
+              <input
+                type="checkbox"
+                name="botcheck"
+                className="hidden"
+                style={{ display: "none" }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+
+              {/* Inline status banner */}
+              {status.message && (
+                <div
+                  className={`contact__alert contact__alert--${status.type}`}
+                  role="alert"
+                >
+                  {status.type === "success" && <CheckCircle2 size={18} className="contact__alert-icon" />}
+                  {status.type === "error" && <AlertCircle size={18} className="contact__alert-icon" />}
+                  {status.type === "submitting" && <Loader2 size={18} className="contact__alert-icon animate-spin" />}
+                  <span className="contact__alert-text">{status.message}</span>
+                </div>
+              )}
+
               {/* Submit CTA */}
               <button
                 type="submit"
                 disabled={status.type === "submitting"}
-                className="button contact__submit-btn"
+                className={`button contact__submit-btn ${status.type === "submitting" ? "contact__submit-btn--loading" : ""}`}
               >
-                <span>
-                  {status.type === "submitting" ? "Sending..." : "Get a Free Project Consultation"}
-                </span>
-                <ArrowRight size={18} />
+                {status.type === "submitting" ? (
+                  <>
+                    <Loader2 size={18} className="animate-spin" />
+                    <span>Sending Inquiry...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Get a Free Project Consultation</span>
+                    <ArrowRight size={18} />
+                  </>
+                )}
               </button>
             </form>
           </div>

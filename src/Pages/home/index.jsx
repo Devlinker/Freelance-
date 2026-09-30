@@ -69,6 +69,10 @@ export default function Home() {
                   fetchPriority="high"
                 />
                 <div className="home__img-glow"></div>
+                <div className="home__status-chip">
+                  <span className="home__status-dot"></span>
+                  <span>Available for Projects</span>
+                </div>
               </div>
             </div>
           </div>

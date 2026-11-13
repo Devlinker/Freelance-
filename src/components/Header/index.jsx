@@ -32,7 +32,7 @@ export default function Header({ activeSection }) {
               <path d="M4 19V5L12 13L20 5V19" stroke="#ff7a00" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </span>
-          <span className="nav__logo-text">Mathan</span>
+          <span className="nav__logo-text">DevLinker</span>
         </a>
 
         {/* Desktop & Mobile Menu */}

@@ -4,6 +4,16 @@ import { AnimatePresence, motion } from "framer-motion";
 import "./project.css";
 
 const projects = [
+    {
+    id: "03",
+    title: "Shopiqo — Corporate Gifting Store",
+    description: "Modern e-commerce platform for corporate gifts, customized merchandise, and bulk orders.",
+    fullDescription: "Shopiqo is a specialized corporate merchandise and custom gifting web platform. It features interactive product customization workflows, logo uploads, sample approvals, curated event collections, responsive mobile navigation, and fast checkout.",
+    tags: ["Laravel", "Tailwind CSS", "JavaScript", "Php"],
+    image: "/assets/img/projects/shopiqo.jpg",
+    liveUrl: "https://shopiqo.rankuhigher.com/",
+    githubUrl: "https://github.com/Devlinker",
+  },
   {
     id: "01",
     title: "NOSTRA Gallery",
@@ -24,16 +34,7 @@ const projects = [
     liveUrl: "https://example.com/bug-watch",
     githubUrl: "https://github.com/Devlinker",
   },
-  {
-    id: "03",
-    title: "E-Commerce Website",
-    description: "Responsive e-commerce website with modern design and cart functionality.",
-    fullDescription: "A full-featured responsive online shopping experience with animated cart drawers, dynamic filtering, secure checkout UI, and smooth product visualizers.",
-    tags: ["React.js", "Redux", "Laravel"],
-    image: "/assets/img/projects/ecommerce.webp",
-    liveUrl: "https://example.com/ecommerce-platform",
-    githubUrl: "https://github.com/Devlinker",
-  },
+
 ];
 
 export default function Projects() {
@@ -171,14 +172,6 @@ export default function Projects() {
                     className="button"
                   >
                     Live Demo <ExternalLink size={16} />
-                  </a>
-                  <a
-                    href={activeProject.githubUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="button button--ghost"
-                  >
-                    GitHub Code
                   </a>
                 </div>
               </div>

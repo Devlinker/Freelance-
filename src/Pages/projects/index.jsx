@@ -10,7 +10,7 @@ const projects = [
     description: "Modern e-commerce platform for corporate gifts, customized merchandise, and bulk orders.",
     fullDescription: "Shopiqo is a specialized corporate merchandise and custom gifting web platform. It features interactive product customization workflows, logo uploads, sample approvals, curated event collections, responsive mobile navigation, and fast checkout.",
     tags: ["Laravel", "Tailwind CSS", "JavaScript", "Php"],
-    image: "/assets/img/projects/shopiqo.jpg",
+    image: "/assets/img/projects/shopiqo.png",
     liveUrl: "https://shopiqo.rankuhigher.com/",
     githubUrl: "https://github.com/Devlinker",
   },

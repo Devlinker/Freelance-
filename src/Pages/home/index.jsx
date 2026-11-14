@@ -1,4 +1,4 @@
-import { ArrowRight, Code2, Sparkles, Layers, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import "./home.css";
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
 
       <div className="home__container container">
         <div className="home__grid">
-          {/* Left Hero Content */}
+          {/* Hero Content */}
           <div className="home__data">
             {/* Pill Tag */}
             <div className="home__badge">
@@ -26,7 +26,7 @@ export default function Home() {
 
             {/* Headline */}
             <h1 className="home__title">
-              Freelance Web Developer <br />
+              Freelance Web Developer <br className="home__title-br" />
               <span className="home__title-highlight">in Coimbatore</span>
             </h1>
 
@@ -56,23 +56,19 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right Hero Visual Showcase */}
+          {/* Hero Visual Showcase */}
           <div className="home__visual">
             <div className="home__img-wrapper">
               {/* Developer Photo in Glowing Glass Frame */}
               <div className="home__img-frame">
                 <img
-                  src="/assets/img/hero-developer.jpg"
+                  src="/assets/img/Mathan.png"
                   alt="Mathan - Freelance Web Developer in Coimbatore"
                   className="home__img"
                   loading="eager"
                   fetchPriority="high"
                 />
                 <div className="home__img-glow"></div>
-                <div className="home__status-chip">
-                  <span className="home__status-dot"></span>
-                  <span>Available for Projects</span>
-                </div>
               </div>
             </div>
           </div>
